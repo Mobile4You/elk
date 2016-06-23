@@ -1,6 +1,8 @@
 elasticsearch:
   image: elasticsearch:latest
   command: elasticsearch -Des.network.host=0.0.0.0
+  volumes:
+      - ./elasticsearch:/usr/share/elasticsearch/data
   ports:
     - "9200:9200"
     - "9300:9300"
@@ -11,7 +13,7 @@ logstash:
   volumes:
     - ./logstash/config:/etc/logstash/conf.d
   ports:
-    - "5000:5000"
+    - "12201:12201/udp"
   links:
     - elasticsearch
 kibana:
