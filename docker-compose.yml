@@ -1,11 +1,16 @@
 elasticsearch:
-  image: elasticsearch:latest
+  image: elasticsearch:2.4.0
   command: elasticsearch -Des.network.host=0.0.0.0
   volumes:
       - ./elasticsearch:/usr/share/elasticsearch/data
   ports:
     - "9200:9200"
     - "9300:9300"
+  ulimits:
+    nproc: 65535
+    nofile:
+      soft: 20000
+      hard: 65536
 
 logstash:
   build: logstash/
@@ -24,3 +29,5 @@ kibana:
     - "5601:5601"
   links:
     - elasticsearch
+  environment:
+    NODE_OPTIONS: "--max-old-space-size=200"
