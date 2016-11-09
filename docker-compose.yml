@@ -24,3 +24,5 @@ kibana:
     - "5601:5601"
   links:
     - elasticsearch
+  environment:
+    NODE_OPTIONS: "--max-old-space-size=200"
