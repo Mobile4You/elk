@@ -6,6 +6,11 @@ elasticsearch:
   ports:
     - "9200:9200"
     - "9300:9300"
+  ulimits:
+    nproc: 65535
+    nofile:
+      soft: 20000
+      hard: 65536
 
 logstash:
   build: logstash/
