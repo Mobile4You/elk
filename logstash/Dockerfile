@@ -1,4 +1,4 @@
-FROM logstash:2.4.0-1
+FROM logstash:latest
 
-# Add your logstash plugins setup here
-# Example: RUN logstash-plugin install logstash-filter-json 
+RUN logstash-plugin uninstall logstash-output-s3
+RUN logstash-plugin install logstash-output-s3
